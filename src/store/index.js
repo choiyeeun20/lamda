@@ -4,8 +4,8 @@ import crawling from './crawling';
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
-    modules : {
-       crawling
+export const store = new Vuex.Store({
+    modules:{
+        crawling
     }
 })

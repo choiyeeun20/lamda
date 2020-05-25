@@ -7,13 +7,13 @@
         </div>
         <br>
         <div>
-            <img id="google" src="https://d.newsweek.com/en/full/1582429/google-doodle-thanks-coronavirus-workers.gif" title="Google">
+            <img id="google" src="https://www.google.co.kr/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" title="Google">
         </div>
         <div>
-            <input id="search" type="text" style="background:url(5.png), url(6.png); background-repeat: no-repeat; background-position: 88% 50%, 98% 50%;" title="검색">
+            <input id="search" v-model="searchWord" type="text" style=" background-repeat: no-repeat; background-position: 88% 50%, 98% 50%;" title="검색">
         </div>
         <div id="box">
-            <input  @click="bugsMusic" id="google_search" type="button" value="Google 검색">
+            <input  @click="search" id="google_search" type="button" value="Google 검색">
         </div>
         <div id="bottom">
             <div id="bottom_left">
@@ -31,19 +31,24 @@
 </template>
 <script>
     import {mapState} from 'vuex'
+
     export default {
-        components :{},
-        data(){},
-        computed :{
+        data(){
+            return {searchWord : ''}
+        },
+        computed : {
             ...mapState({
-                bugsmusic: this.$store.state.crawling.bugmusic
+                bugsmusic : (state)=> state.crawling.bugsmusic
             })
         },
+        methods : {
+            search(){
+                alert('1')
+                this.$store.dispatch('crawling/search',this.searchWord )
+            }
+        }
 
-    methods(){}
     }
-
-
 </script>
 <style scoped>
     body{
