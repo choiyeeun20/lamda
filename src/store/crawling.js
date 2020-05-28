@@ -12,10 +12,10 @@ const actions = {
         axios.post(state.context+`bugsmusic`,searchWord,{
             authorization: 'JWT fefege..',
             Accept : 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
         })
             .then(({data})=>{
-
+                alert('action 진입')
                 commit('SEARCH', data)
                 router.push('/retriever')
             })

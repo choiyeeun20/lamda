@@ -1,44 +1,39 @@
 import axios from 'axios'
+import router from "@/router";
 
 const state ={
-    context:'http://localhost:5000/',
-    soccer :[]
+    context : 'http://localhost:5000/',
+    soccer : []
 }
-
 const actions ={
-    async search({commit},searchWord){
-        axios.post(state.context+'soccer',searchWord,{
-            authorization: 'JWT fefege..',
-            Accept : 'application/json',
-            'Content-Type': 'application/json'
-        })
+    async search({commit},searchWord) {
+        axios.get(state.context + 'soccer/'+searchWord)
             .then(({data})=>{
-                commit('SEARCH',data)
-
+                alert("action 진입")
+                commit("SEARCH",data)
+                router.push("/Home");
             })
             .catch(()=>{
-                alert('통신실패 !')
+                alert('축구통신실패!')
             })
+
     }
 }
-
-const mutations ={
-    SEARCH(state,data){
-        alert('뮤테이션 진입')
+const mutations = {
+    SEARCH() {
+        alert("mutation 진입")
     }
-
 }
+const getters = {}
 
-const getters ={
 
-}
 
-export default {
-    name : 'soccer',
+
+export  default {
+    name:'soccer',
     namespaced: true,
     state,
     actions,
     mutations,
     getters
 }
-
