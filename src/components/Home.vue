@@ -15,6 +15,9 @@
         <div id="box">
             <input  @click="search" id="google_search" type="button" value="Google 검색">
         </div>
+        <div>
+            <h3>검색된 수 : {{count}}</h3>
+        </div>
         <div id="bottom">
             <div id="bottom_left">
                 <a>광고</a>
@@ -30,24 +33,27 @@
     </div>
 </template>
 <script>
-    import {mapState} from 'vuex'
+
+
 
     export default {
         data(){
-            return {searchWord : ''}
+            return {
+                searchWord : '',
+
+            }
         },
-        computed : {
-            ...mapState({
-                bugsmusic : (state)=> state.crawling.bugsmusic
-            })
-        },
+
         methods : {
             search(){
-                alert('1')
-                this.$store.dispatch('crawling/search',this.searchWord )
+                alert(this.searchWord)
+                if(this.searchWord === '벅스'){
+                    this.$store.dispatch('crawling/search',this.searchWord);
+                }else if(this.searchWord ==='축구'){
+                    this.$store.dispatch('soccer/search',this.searchWord);
+                }
             }
         }
-
     }
 </script>
 <style scoped>
