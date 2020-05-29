@@ -8,20 +8,30 @@ const state = {
 }
 const actions = {
     async search({commit},searchWord){
-        alert('검색어: '+searchWord)
-        axios.post(state.context+`bugsmusic`,searchWord,{
-            authorization: 'JWT fefege..',
-            Accept : 'application/json',
-            'Content-Type': 'application/json',
-        })
-            .then(({data})=>{
-                alert('action 진입')
-                commit('SEARCH', data)
-                router.push('/retriever')
-            })
-            .catch(()=>{
-                alert('통신 실패 !')
-            })
+        alert("검색어:"+searchWord)
+        switch (searchWord) {
+            case'네이버영화':
+                axios.get(state.context+`naver-movie/${searchWord}`)
+                    .then(()=>{})
+                    .catch(()=>{})
+                break
+
+            case'벅스':
+                axios.post(state.context+`bugsmusic`,searchWord,{
+                    authorization: 'JWT fefege..',
+                    Accept : 'application/json',
+                    'Content-Type': 'application/json',
+                })
+                    .then(({data})=>{
+                        alert('action 진입')
+                        commit('SEARCH', data)
+                        router.push('/retriever')
+                    })
+                    .catch(()=>{
+                        alert('통신 실패 !')
+                    })
+
+        }
     }
 
 }
