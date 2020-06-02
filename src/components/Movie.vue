@@ -1,5 +1,6 @@
 <template>
 <div>
+    <h3>전체 검색결과수  : {{count}}</h3>
     <div class="top">
         <div >
             <table>
@@ -41,7 +42,13 @@
     </v-simple-table>
 
     <div class="text-center">
-        <v-pagination v-model="page" :length="5" :total-visible="5"></v-pagination>
+        <div style="margin: 0 auto; width:300px; height:100px">
+        <span v-if='existPrev' style="width:50px; height:50px; border: 1px solid #000000; margin-right:5px">이전</span>
+        <span v-for='i in 5' :key="i" style="width:50px; height:50px; border: 1px solid #000000; margin-right:5px">{{i+5}}</span>
+
+        <span v-if='existNext' style="width:50px; height:50px; border: 1px solid #000000; margin-right:5px">다음</span>
+        <!-- <v-pagination v-model="page" :length="5" :total-visible="5"></v-pagination> -->
+    </div>
     </div>
 </div>
 </template>
@@ -53,8 +60,14 @@
         data() {
             return {
                 page: 1,
+                existPrev : false,
+                existNext : true
+
 
             };
+        },
+        created(){
+            alert("무비에서 크리티트 실행됨")
         },
         computed: {
             ...mapState({

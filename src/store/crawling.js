@@ -11,7 +11,7 @@ const actions = {
     async search({commit},searchWord){
         alert("검색어:"+searchWord)
         switch (searchWord) {
-            case'네이버영화':
+            case'영화':
                 axios
                     .get(state.context+`movie/list/0/${searchWord}`)
                     .then(({data})=>{

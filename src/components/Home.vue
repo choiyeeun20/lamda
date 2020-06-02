@@ -42,6 +42,10 @@
                 searchWord : '',
 
             }
+
+        },
+        created(){
+            alert("홈에서 크리티트 실행됨")
         },
 
         methods : {
@@ -52,7 +56,7 @@
                 }else if(this.searchWord ==='축구'){
                     this.$store.dispatch('soccer/search',this.searchWord)
                 }
-                else if(this.searchWord === '네이버영화'){
+                else if(this.searchWord === '영화'){
                     this.$store.dispatch('crawling/search',this.searchWord)
                 }
             }
